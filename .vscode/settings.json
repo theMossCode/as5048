@@ -1,0 +1,15 @@
+{
+    "nrf-connect.applications": [
+        "${workspaceFolder}"
+    ],
+    "nrf-connect.topdir": "${nrf-connect.sdk:2.0.0}",
+    "nrf-connect.toolchain.path": "PATH",
+    "files.associations": {
+        "as5048a.h": "c",
+        "spi.h": "c",
+        "gpio.h": "c",
+        "log.h": "c",
+        "devicetree.h": "c",
+        "types.h": "c"
+    }
+}

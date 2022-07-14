@@ -1,0 +1,6 @@
+description:
+  Device driver binding for the AMS AS4058A magnetic rotary encoder
+
+compatible: "ams,as5048a"
+
+include: spi-device.yaml

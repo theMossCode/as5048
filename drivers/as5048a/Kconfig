@@ -1,0 +1,5 @@
+menuconfig AS5048A
+    bool "AS5048A magnetic rotary encode"
+    depends on SPI
+    help
+      Enable driver for AS5048A using SPI
