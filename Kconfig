@@ -1,3 +1,1 @@
-menu "AS4058"
 rsource "drivers/Kconfig"
-endmenu

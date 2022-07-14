@@ -1,1 +1,3 @@
-rsource "as5048a/Kconfig"
+menu "Drivers"
+rsource "sensor/Kconfig"
+endmenu

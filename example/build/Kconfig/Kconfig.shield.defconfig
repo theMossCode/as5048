@@ -1,0 +1,2 @@
+osource "d:/Misc/AS5048/Code/as5048/example/boards/shields/*/Kconfig.defconfig"
+osource "C:/ncs/v2.0.0/nrf/boards/shields/*/Kconfig.defconfig"

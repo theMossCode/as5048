@@ -1,0 +1,3 @@
+if SENSOR
+rsource "as5048a/Kconfig"
+endif # SENSOR
