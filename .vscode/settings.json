@@ -4,7 +4,7 @@
         "${workspaceFolder}\\example"
     ],
     "nrf-connect.topdir": "${nrf-connect.sdk:2.0.0}",
-    "nrf-connect.toolchain.path": "${nrf-connect.toolchain:1.9.1}",
+    "nrf-connect.toolchain.path": "${nrf-connect.toolchain:2.0.0}",
     "files.associations": {
         "as5048a.h": "c",
         "spi.h": "c",

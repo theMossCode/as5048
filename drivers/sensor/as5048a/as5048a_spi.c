@@ -1,10 +1,10 @@
 #include <logging/log.h>
 #include "as5048a.h"
 
-LOG_MODULE_REGISTER(AS5048, CONFIG_SENSOR_LOG_LEVEL);
-
 #define AS5048_WRITE                    0
 #define AS5048_READ                     1
+
+LOG_MODULE_DECLARE(AS5048A, CONFIG_SENSOR_LOG_LEVEL);
 
 #define AS5048_RX_ERR_CHECK(val)        (val & (1 << 14))
 
@@ -36,16 +36,16 @@ static int as5048_transfer(const struct spi_dt_spec *bus, uint8_t op, uint16_t t
 		.buffers = &tx_buf,
 		.count = 1
 	};
-	struct spi_buf rx_buf = {
-        .buf = rx_val,
+	const struct spi_buf rx_buf = {
+        .buf = &rx_val,
         .len = 1
     };
 	const struct spi_buf_set rx = {
-		.buffers = rx_buf,
+		.buffers = &rx_buf,
 		.count = 1
 	};
 
-	int ret = spi_transceive_dt(&bus, &tx, &rx);
+	int ret = spi_transceive_dt(bus, &tx, &rx);
 	if (ret) {
 		LOG_DBG("spi_transceive FAIL %d\r\n", ret);
 		return ret;
@@ -56,7 +56,7 @@ static int as5048_transfer(const struct spi_dt_spec *bus, uint8_t op, uint16_t t
 
 static int as5048_bus_check_spi(const struct spi_dt_spec *bus)
 {
-	return spi_is_ready(&bus) ? 0 : -ENODEV;
+	return spi_is_ready(bus) ? 0 : -ENODEV;
 }
 
 static int as5048_reg_read_spi(const struct spi_dt_spec *bus,

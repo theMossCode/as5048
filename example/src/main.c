@@ -20,7 +20,7 @@
  */
 static const struct device *get_as5048_device(void)
 {
-	const struct device *dev = device_get_binding("AS5048A");
+	const struct device *dev = DEVICE_DT_GET_ANY(ams_as5048a);
 
 	if (dev == NULL) {
 		/* No such node, or the node does not have status "okay". */
