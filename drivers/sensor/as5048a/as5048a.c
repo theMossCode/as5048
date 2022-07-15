@@ -81,11 +81,12 @@ static int as5048a_init(const struct device *dev)
     int ret = 0;
 
     ret = as5048a_bus_check(dev);
-    if(!ret){
-        LOG_DBG("Bus check FAIL:\r\n");
+    if(ret<0){
+        LOG_DBG("Bus check FAIL: %d\r\n", ret);
         return ret;
     }
 
+    data->error_reg = 0xffff;
     ret = as5048a_reg_read(dev, AS5048_REG_CLEAR_ERR_FLAG, &data->error_reg);
     if(ret){
         LOG_DBG("err check FAIL:\r\n");

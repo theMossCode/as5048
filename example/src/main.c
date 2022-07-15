@@ -54,6 +54,6 @@ void main(void)
 
 		printk("Angle: %i\r\n", rotation.val1);
 
-		k_sleep(K_MSEC(1000));
+		k_sleep(K_MSEC(300));
 	}
 }

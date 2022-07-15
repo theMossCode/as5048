@@ -25,20 +25,22 @@ static uint8_t calculate_even_parity(uint16_t value)
 
 static int as5048_transfer(const struct spi_dt_spec *bus, uint8_t op, uint16_t tx_val, uint16_t *rx_val)
 {
-	uint16_t tx_data = tx_val;
-    tx_data |= (op << 14); // R/W 
-    tx_data |= (calculate_even_parity(tx_data) << 15); // Parity bit(MSB)
+    uint16_t addr_val = tx_val & 0x3fff;
+    addr_val |= (op << 14); 
+    addr_val |= (calculate_even_parity(addr_val) << 15);
+	uint8_t tx_data[2] = {(uint8_t)(addr_val & 0xff), (uint8_t)((addr_val >> 8) & 0x3f)};
+    uint8_t rx_data[2];
 	const struct spi_buf tx_buf = {
-		.buf = &tx_data,
-		.len = 1
+		.buf = tx_data,
+		.len = 2
 	};
 	const struct spi_buf_set tx = {
 		.buffers = &tx_buf,
 		.count = 1
 	};
 	const struct spi_buf rx_buf = {
-        .buf = &rx_val,
-        .len = 1
+        .buf = rx_data,
+        .len = 2
     };
 	const struct spi_buf_set rx = {
 		.buffers = &rx_buf,
@@ -50,6 +52,10 @@ static int as5048_transfer(const struct spi_dt_spec *bus, uint8_t op, uint16_t t
 		LOG_DBG("spi_transceive FAIL %d\r\n", ret);
 		return ret;
 	}
+
+    *rx_val = rx_data[0];
+    *rx_val <<= 8;
+    *rx_val |= rx_data[1];
 
 	return 0;    
 }

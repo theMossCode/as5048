@@ -23,7 +23,7 @@
 
 &uart0{
     status = "okay";
-    current-speed = < 9600 >;
+    current-speed = < 115200 >;
 };
 
 &spi0 {
@@ -33,7 +33,7 @@
         status = "okay";
         compatible = "ams,as5048a";
         reg = <0x0 >;
-        spi-max-frequency = < 10 >;
+        spi-max-frequency = < 1000000 >;
         label = "angle_sensor";
     };
 };
