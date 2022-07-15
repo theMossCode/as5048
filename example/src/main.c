@@ -11,8 +11,6 @@
 #include <drivers/sensor.h>
 #include <sys/printk.h>
 
-#include "../../drivers/sensor/as5048a/as5048a.h"
-
 
 /*
  * Get a device structure from a devicetree node with compatible
