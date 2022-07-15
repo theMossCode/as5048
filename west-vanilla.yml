@@ -1,6 +1,6 @@
 manifest:
   self:
-    path: app-zephyr
+    path: as5048-master
 
   remotes:
     - name: zephyrproject-rtos

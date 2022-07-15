@@ -14,9 +14,9 @@
 
 /*
  * Get a device structure from a devicetree node with compatible
- * "bosch,bme280". (If there are multiple, just pick one.)
+ * "ams,as5048a". (If there are multiple, just pick one.)
  */
-static const struct device *get_as5048_device(void)
+static const struct device *get_as5048a_device(void)
 {
 	const struct device *dev = DEVICE_DT_GET_ANY(ams_as5048a);
 
@@ -40,7 +40,7 @@ static const struct device *get_as5048_device(void)
 void main(void)
 {
 	printk("Init device\r\n");
-	const struct device *dev = get_as5048_device();
+	const struct device *dev = get_as5048a_device();
 
 	if (dev == NULL) {
 		return;
@@ -48,11 +48,10 @@ void main(void)
 
 	while (1) {
 		struct sensor_value rotation;
-
 		sensor_sample_fetch(dev);
-		sensor_channel_get(dev, SENSOR_CHAN_ROTATION, &rotation);
-
-		printk("Angle: %i\r\n", rotation.val1);
+		if(sensor_channel_get(dev, SENSOR_CHAN_ROTATION, &rotation) == 0){
+			printk("Angle: %i\r\n", rotation.val1);
+		}
 
 		k_sleep(K_MSEC(1000));
 	}

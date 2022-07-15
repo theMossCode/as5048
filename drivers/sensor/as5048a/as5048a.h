@@ -9,22 +9,6 @@
 
 #define DT_DRV_COMPAT   ams_as5048a
 
-#define AS5048_BUS_SPI DT_ANY_INST_ON_BUS_STATUS_OKAY(spi)
-
-typedef int (*as5048_bus_check_fn)(const struct spi_dt_spec *bus);
-typedef int (*as5048_reg_read_fn)(const struct spi_dt_spec *bus,
-				  uint16_t addr, uint16_t *rx_data);
-typedef int (*as5048_reg_write_fn)(const struct spi_dt_spec *bus,
-				   uint16_t reg, uint16_t val);
-
-struct as5048_bus_io {
-	as5048_bus_check_fn check;
-	as5048_reg_read_fn read;
-	as5048_reg_write_fn write;
-};
-
-extern const struct as5048_bus_io as5048_bus_io_spi;
-
 #define AS5048_SPI_OPERATION (SPI_WORD_SET(8) | SPI_TRANSFER_MSB | SPI_MODE_CPOL)
 
 #define AS5048_REG_NOP                  0x0000
@@ -36,6 +20,6 @@ extern const struct as5048_bus_io as5048_bus_io_spi;
 #define AS5048_REG_MAG                  0x3ffe
 #define AS5048_REG_ANGLE                0x3fff
 
-#define AS5048_RX_ERR_CHECK(val)        (val & (1 << 14))
+#define AS5048_RECEIVED_DATA_ERR_CHECK(val)        (val & (1 << 14))
 
 #endif
