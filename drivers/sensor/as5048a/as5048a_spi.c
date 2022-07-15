@@ -82,7 +82,7 @@ static int as5048_reg_read_spi(const struct spi_dt_spec *bus,
     }
 
     if(AS5048_RX_ERR_CHECK(rx_val)){
-        LOG_DBG("err check FAIL\r\n");
+        LOG_DBG("err check FAIL: %u\r\n", rx_val);
         return -EPROTO;
     }
 

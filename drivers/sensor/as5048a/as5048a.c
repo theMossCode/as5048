@@ -44,14 +44,17 @@ static int as5048a_sample_fetch(const struct device *dev,
     int ret = 0;
 
     switch(chan){
+        case SENSOR_CHAN_ALL: // FALL THROUGH
         case SENSOR_CHAN_ROTATION:{
             ret = as5048a_reg_read(dev, AS5048_REG_ANGLE, (uint16_t*)&data->angle_raw);
             if(ret){
+                LOG_DBG("Angle Fetch FAIL\r\n");
                 return ret;
             }
             break;
         }
         default:{
+            LOG_WRN("Channel not supported");
             return -EINVAL;
         }
     }
@@ -68,7 +71,7 @@ static int as5048a_channel_get(const struct device *dev,
         val->val1 = data->angle_raw;
     }
     else{
-        LOG_DBG("Channel not supported\r\n");
+        LOG_WRN("Channel not supported\r\n");
         return -EINVAL;
     }
     return 0;
@@ -83,13 +86,6 @@ static int as5048a_init(const struct device *dev)
     ret = as5048a_bus_check(dev);
     if(ret<0){
         LOG_DBG("Bus check FAIL: %d\r\n", ret);
-        return ret;
-    }
-
-    data->error_reg = 0xffff;
-    ret = as5048a_reg_read(dev, AS5048_REG_CLEAR_ERR_FLAG, &data->error_reg);
-    if(ret){
-        LOG_DBG("err check FAIL:\r\n");
         return ret;
     }
 

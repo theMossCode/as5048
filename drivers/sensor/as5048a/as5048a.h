@@ -23,9 +23,9 @@ struct as5048_bus_io {
 	as5048_reg_write_fn write;
 };
 
-#define AS5048_SPI_OPERATION (SPI_WORD_SET(8) | SPI_TRANSFER_MSB |	\
-			      SPI_MODE_CPOL | SPI_MODE_CPHA)
 extern const struct as5048_bus_io as5048_bus_io_spi;
+
+#define AS5048_SPI_OPERATION (SPI_WORD_SET(8) | SPI_TRANSFER_MSB | SPI_MODE_CPOL)
 
 #define AS5048_REG_NOP                  0x0000
 #define AS5048_REG_CLEAR_ERR_FLAG       0x0001
