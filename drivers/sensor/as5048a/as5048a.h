@@ -2,14 +2,13 @@
 #define AS5048_H
 
 #include <zephyr.h>
-// #include <zephyr/types.h>
 #include <device.h>
 #include <devicetree.h>
 #include <drivers/spi.h>
 
 #define DT_DRV_COMPAT   ams_as5048a
 
-#define AS5048_SPI_OPERATION (SPI_WORD_SET(8) | SPI_TRANSFER_MSB | SPI_MODE_CPOL)
+#define AS5048_SPI_OPERATION (SPI_WORD_SET(8) | SPI_TRANSFER_MSB | SPI_MODE_CPOL | SPI_MODE_CPHA)
 
 #define AS5048_REG_NOP                  0x0000
 #define AS5048_REG_CLEAR_ERR_FLAG       0x0001
