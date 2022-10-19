@@ -1,4 +1,4 @@
-manifest:
+westmanifest:
   remotes:
     - name: nrfconnect
       url-base: https://github.com/nrfconnect

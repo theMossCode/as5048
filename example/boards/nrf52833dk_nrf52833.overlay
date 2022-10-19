@@ -1,3 +1,7 @@
+/{
+
+};
+
 &spi0 {
     status = "okay";
     cs-gpios = <&gpio0 25 GPIO_ACTIVE_LOW>;

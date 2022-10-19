@@ -6,9 +6,9 @@
  */
 
 #include <zephyr.h>
-#include <device.h>
-#include <devicetree.h>
-#include <drivers/sensor.h>
+#include <zephyr/device.h>
+#include <zephyr/devicetree.h>
+#include <zephyr/drivers/sensor.h>
 #include <sys/printk.h>
 
 
@@ -50,7 +50,7 @@ void main(void)
 		struct sensor_value rotation;
 		sensor_sample_fetch(dev);
 		if(sensor_channel_get(dev, SENSOR_CHAN_ROTATION, &rotation) == 0){
-			printk("Angle: %i\r\n", rotation.val1);
+			printk("Angle: %d.%06d\r\n", rotation.val1, rotation.val2);
 		}
 
 		k_sleep(K_MSEC(1000));

@@ -19,6 +19,4 @@
 #define AS5048_REG_MAG                  0x3ffe
 #define AS5048_REG_ANGLE                0x3fff
 
-#define AS5048_RECEIVED_DATA_ERR_CHECK(val)        (val & (1 << 14))
-
 #endif
